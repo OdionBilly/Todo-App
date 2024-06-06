@@ -23,9 +23,9 @@ function App() {
           <div className="mt-8 lg:w-3/6 lg:mx-auto ">
             <Addform/>
           </div>
-          <div className="bg-white lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md">
+          <div className= {`${darkTheme ? "bg[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
             <Nav/>
-            <div className="flex justify-between items-center px-5 h-15 text-sm lg:text-[16px] text-[#9495a5]">
+            <div className="flex justify-between items-center px-5 h-14 py-5 text-sm lg:text-[16px] text-[#9495a5]">
               Add new Todo item!!!
               <button className=" focus:font-bold" type="button">
                 clear completed
