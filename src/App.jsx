@@ -3,11 +3,27 @@ import SunIcon from "./assets/icon-sun.svg";
 import './App.css'
 import Addform from "./component/Addform";
 import Nav from "./component/Nav";
-import { useContext  } from "react";
+import { useContext, useState  } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const {darkTheme, handleTheme} = useContext(ThemeContext)
+  
+  const [todos, setTodos] = useState([])
+
+
+  function addTodo(text){
+    const newTodo ={
+      id:Date.now(),
+      text:text,
+      complete: false,
+    }
+    setTodos([...todos, newTodo]);  
+  }
+  function renderTodos(){
+    return <Item/>;
+  }
+  
 
   return ( 
     
@@ -21,10 +37,11 @@ function App() {
           </div>
 
           <div className="mt-8 lg:w-3/6 lg:mx-auto ">
-            <Addform/>
+            <Addform addTodo={addTodo}/>
           </div>
           <div className= {`${darkTheme ? "bg[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
             <Nav/>
+            {renderTodos()}
             <div className="flex justify-between items-center px-5 h-14 py-5 text-sm lg:text-[16px] text-[#9495a5]">
               Add new Todo item!!!
               <button className=" focus:font-bold" type="button">
