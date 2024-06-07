@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
 
-export default function Addform(addTodo) {
+export default function Addform({addTodo}) {
   const {darkTheme} = useContext(ThemeContext);
 
   const [item, setItem] = useState("")
@@ -12,7 +12,7 @@ export default function Addform(addTodo) {
     addTodo(item);
   };
   
-  // console.log({item});
+  console.log({item});
 
   return (
     <div className={`${darkTheme ? "bg-[#25273d]" : "bg-white"

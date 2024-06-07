@@ -3,6 +3,7 @@ import SunIcon from "./assets/icon-sun.svg";
 import './App.css'
 import Addform from "./component/Addform";
 import Nav from "./component/Nav";
+import Item from "./component/Item";
 import { useContext, useState  } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 
@@ -21,7 +22,7 @@ function App() {
     setTodos([...todos, newTodo]);  
   }
   function renderTodos(){
-    return <Item/>;
+    return todos.map((todo) => <Item itemData = {todo}/>);
   }
   
 
@@ -42,6 +43,7 @@ function App() {
           <div className= {`${darkTheme ? "bg[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
             <Nav/>
             {renderTodos()}
+
             <div className="flex justify-between items-center px-5 h-14 py-5 text-sm lg:text-[16px] text-[#9495a5]">
               Add new Todo item!!!
               <button className=" focus:font-bold" type="button">
