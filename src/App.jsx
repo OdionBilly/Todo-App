@@ -12,7 +12,7 @@ function App() {
   
   const [todos, setTodos] = useState([])
 
-
+// object funcion for adding to the form
   function addTodo(text){
     const newTodo ={
       id:Date.now(),
@@ -21,8 +21,15 @@ function App() {
     }
     setTodos([...todos, newTodo]);  
   }
+  // function for deleting form the item
+   function removeTodoById(id){
+    const todoItems = todos.filter((todo)=> todo.id !== id);
+    setTodos(todoItems);
+   }
+
+  //  for mapping through the array item
   function renderTodos(){
-    return todos.map((todo) => <Item itemData = {todo}/>);
+    return todos.map((todo) => <Item itemData = {todo}deletItem = {removeTodoById}/>);
   }
   
 
@@ -40,7 +47,7 @@ function App() {
           <div className="mt-8 lg:w-3/6 lg:mx-auto ">
             <Addform addTodo={addTodo}/>
           </div>
-          <div className= {`${darkTheme ? "bg[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
+          <div className= {`${darkTheme ? "bg-[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
             <Nav/>
             {renderTodos()}
 
