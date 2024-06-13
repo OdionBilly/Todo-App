@@ -9,8 +9,8 @@ import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const {darkTheme, handleTheme} = useContext(ThemeContext)
-  
   const [todos, setTodos] = useState([])
+  const [ filter, setFilter]= useState('all');
 
 // object funcion for adding to the form
   function addTodo(text){
@@ -27,9 +27,37 @@ function App() {
     setTodos(todoItems);
    }
 
+   function togleTodoComplete (id){
+    setTodos(todos.map(todo => {
+      if(todo.id === id){
+        return{...todo, complete: !todo.complete};
+      }
+      return todo;
+    }))
+  }
+
+  function setFillterValue (value) {
+    setFilter(value )
+
+  }
+
   //  for mapping through the array item
-  function renderTodos(){
-    return todos.map((todo) => <Item itemData = {todo}deletItem = {removeTodoById}/>);
+  function renderTodos () {
+    
+    let filterTodos = todos
+    if (filter === 'active'){
+      filterTodos = todos.filter(todo=> !todo.complete);
+    } else if (filter ==='complete'){
+      filterTodos = todos.filter(todo => todo.complete); 
+    }
+    return filterTodos.map((todo) => 
+     <Item  
+     key = {todo.id}
+     itemData = {todo}
+     deletItem = {removeTodoById}
+     statusUpdate= {togleTodoComplete}
+    
+    />);
   }
   
 
@@ -48,7 +76,7 @@ function App() {
             <Addform addTodo={addTodo}/>
           </div>
           <div className= {`${darkTheme ? "bg-[#25273d] focus:bg-[#2f314c]" : "bg-[white]" } lg:w-3/6 lg:mx-auto mx-5 relative top-5 rounded-md`}>
-            <Nav/>
+            <Nav filterType = {setFillterValue}/>
             {renderTodos()}
 
             <div className="flex justify-between items-center px-5 h-14 py-5 text-sm lg:text-[16px] text-[#9495a5]">
