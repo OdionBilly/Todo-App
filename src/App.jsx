@@ -30,7 +30,7 @@ function App() {
    function togleTodoComplete (id){
     setTodos(todos.map(todo => {
       if(todo.id === id){
-        return{...todo, complete: !todo.complete};
+        return{...todos, complete: !todo.complete};
       }
       return todo;
     }))
@@ -47,7 +47,7 @@ function App() {
     let filterTodos = todos
     if (filter === 'active'){
       filterTodos = todos.filter(todo=> !todo.complete);
-    } else if (filter ==='complete'){
+    } else if (filter ==='completed'){
       filterTodos = todos.filter(todo => todo.complete); 
     }
     return filterTodos.map((todo) => 
