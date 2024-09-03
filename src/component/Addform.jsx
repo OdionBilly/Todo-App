@@ -29,7 +29,7 @@ export default function Addform({addTodo, }) {
             </div>
 
             <button type="submit" className={`${darkTheme ? "bg-[#3a3d5e]": "bg-[#3a7cfd]"}  hover:bg-[#366fe1] inline-flex items-center py-2.5 px-3 lg:px-7 text-xs font-medium ml-2 text-white rounded-lg`}>
-              Add
+              add
             </button>
             
             
